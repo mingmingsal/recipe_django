@@ -1,7 +1,17 @@
 from django.db import models
 
 # Create your models here.
-
+MEASURE_UNIT_CHOICES={
+        "mg":"milligram",
+        "g":"gram",
+        "kg":"kilogram",
+        "mL":"milliliter",
+        "L":"liter",
+        "cup":"cup",
+        "tbsp":"tablespoon",
+        "tsp":"teaspoon"
+    }
+#One-to-Many relationship
 class Recipe(models.Model):
     recipe_name = models.CharField(max_length=200)
     recipe_description = models.CharField(max_length=1024)
@@ -12,8 +22,9 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient_name = models.CharField(max_length=100)
-    measure_unit = models.CharField(max_length=3)
+    measure_unit = models.CharField(max_length=4, choices=MEASURE_UNIT_CHOICES, default=MEASURE_UNIT_CHOICES["g"])
     amount = models.IntegerField(default=0)
+    
     def __str__(self):
         return self.ingredient_name
     def is_meat(self): 
