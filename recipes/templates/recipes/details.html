@@ -10,7 +10,7 @@
     <h1>{{ recipe.recipe_name }}</h1>
     {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
-    {% endif %} 
+    {% endif %}
     <table>
       <tr>
         <th>Ingredient Name</th>
@@ -18,19 +18,15 @@
         <th>Unit</th>
       </tr>
       {% for ingredients in recipe.ingredient_set.all %}
-    <tr>
-      <td>
-        {{ ingredients.ingredient_name }} 
-      </td>
-      <td>
-        {{ ingredients.amount }} 
-      </td>
-      <td>
-        {{ ingredients.measure_unit }} 
-      </td>
-    </tr>
-    {% endfor %}
+      <tr>
+        <td>{{ ingredients.ingredient_name }}</td>
+        <td>{{ ingredients.amount }}</td>
+        <td>{{ ingredients.measure_unit }}</td>
+      </tr>
+      {% endfor %}
     </table>
-    
+    {% for steps in recipe.step_set.all %}
+    <p>{{forloop.counter}}. {{ steps.step_description }}</p>
+    {% endfor %}
   </body>
 </html>
