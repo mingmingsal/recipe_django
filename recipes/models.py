@@ -9,7 +9,8 @@ MEASURE_UNIT_CHOICES={
         "L":"liter",
         "cup":"cup",
         "tbsp":"tablespoon",
-        "tsp":"teaspoon"
+        "tsp":"teaspoon",
+        "pc": "piece"
     }
 #One-to-Many relationship
 class Recipe(models.Model):
@@ -22,7 +23,7 @@ class Recipe(models.Model):
 class Step(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     step_description = models.CharField(max_length=1024)
-    
+
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     ingredient_name = models.CharField(max_length=100)
