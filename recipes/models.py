@@ -12,6 +12,7 @@ MEASURE_UNIT_CHOICES={
         "tsp":"teaspoon",
         "pc": "piece"
     }
+
 #One-to-Many relationship
 class Recipe(models.Model):
     recipe_name = models.CharField(max_length=200)
